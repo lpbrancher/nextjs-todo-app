@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "done": true,
+        "text": "Complete online JavaScript course"
+    },
+    {
+        "id": 2,
+        "done": false,
+        "text": "Jog around the park 3x"
+    },
+    {
+        "id": 3,
+        "done": false,
+        "text": "10 minutes meditation"
+    },
+    {
+        "id": 4,
+        "done": false,
+        "text": "Read for 1 hour"
+    }
+]
