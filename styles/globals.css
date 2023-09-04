@@ -20,7 +20,7 @@ body {
 
 main {
   background-color: #181824;
-  background-image: url('bg-desktop-dark.jpg');
+  background-image: url('/bg-desktop-dark.jpg');
   background-size: 100% 320px;
   background-repeat: no-repeat;
   height: 100vh;
