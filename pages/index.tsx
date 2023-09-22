@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import List from '@/components/List'
+import TodoInput from '@/components/TodoInput'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const [data, setData]=useState([])
+  const [data, setData] = useState<any[]>([])
+  const [filteredData, setFilteredData] = useState<any[]>([])
   const getData = () => {
     fetch('default_list.json',
       {
@@ -17,17 +18,53 @@ export default function Home() {
           'Accept': 'application/json'
         }
       }
-    ).then(function(response){
+    ).then(function (response) {
       return response.json()
-    }).then(function(myJson){
-      console.log(myJson);
+    }).then(function (myJson) {
+      // console.log(myJson);
       setData(myJson);
+      setFilteredData(myJson)
     })
   }
-  useEffect(()=>{
+  useEffect(() => {
     getData()
-  },[])
-  
+  }, [])
+
+  const addTodo = (newItem: any) => {
+    // setData([...data, { id: data.length + 1, text }]);
+    setFilteredData((prevData) => {
+      return [{ id: filteredData.length + 1, text: newItem }, ...prevData]
+    })
+  };
+
+  const filterAll = () => {
+    setFilteredData(data)
+  }
+  const filterActive = () => {
+    let activeArray = []
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].done == false) {
+        activeArray.push(data[i])
+      }
+    }
+    console.log(activeArray)
+    setFilteredData(activeArray)
+  }
+  const filterCompleted = () => {
+    let completedArray = []
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].done == true) {
+        completedArray.push(data[i])
+      }
+    }
+    console.log(completedArray)
+    setFilteredData(completedArray)
+  }
+  const changeStyle = () => {
+    let main = document.querySelector('main')
+    main?.classList.contains('light') ? main?.classList.remove('light') : main?.classList.add('light')
+    
+  }
   return (
     <>
       <Head>
@@ -40,10 +77,11 @@ export default function Home() {
         <div className="container">
           <header className='header'>
             <h1>TODO</h1>
-            <button className="change_style">
+            <button onClick={changeStyle} className="change_style">
             </button>
           </header>
-          <List data={data}/>
+          <TodoInput onSubmit={addTodo} />
+          <List filterAll={filterAll} filterActive={filterActive} filterCompleted={filterCompleted} data={filteredData} />
         </div>
       </main>
     </>

@@ -1,12 +1,15 @@
-export default function Todo(props: any){
+export default function Todo(props: any) {
     return (
         <li>
             <div className="item_content">
-                <input type="checkbox" name="" id="" />
+                {props.done == true ?
+                    <input defaultChecked type="checkbox" name="" id="" /> : <input type="checkbox" name="" id="" />
+                }
+
                 <p>{props.text}</p>
             </div>
             <button className="delete_btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fillRule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fillRule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z" /></svg>
             </button>
         </li>
     )

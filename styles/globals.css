@@ -10,6 +10,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  transition-duration: .3s;
 }
 
 html,
@@ -29,6 +30,10 @@ main {
   padding-top: 90px;
   align-items: center;
   color: white;
+}
+main.light {
+  background-color: white;
+  background-image: url('../public/bg-desktop-light.jpg');
 }
 .container {
   max-width: 700px;
@@ -60,9 +65,9 @@ button {
   margin: 10px;
   font-size: 14px;
 }
-
-p {
-  font-size: 14px;
+button:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 li {
@@ -78,6 +83,7 @@ li {
 
 .item_content input {
   margin-right: 20px;
+  cursor: pointer;
 }
 .delete_btn {
   margin-right: 0;
@@ -92,7 +98,19 @@ li {
 .todo_list {
   background-color: #25273c;
 }
+
+.todo_input, .todo_list li {
+  background-color: #25273c;
+  width: 100%;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 5px;
+}
 .todo_list li {
+  margin: 0;
   border-bottom: 2px solid rgba(55, 55, 55, .5);
   padding: 8px 20px;
 }
