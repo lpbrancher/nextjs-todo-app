@@ -41,24 +41,12 @@ export default function Home() {
     setFilteredData(data)
   }
   const filterActive = () => {
-    let activeArray = []
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].done == false) {
-        activeArray.push(data[i])
-      }
-    }
-    console.log(activeArray)
-    setFilteredData(activeArray)
+    const result = data.filter((todo) => todo.done == false)
+    setFilteredData(result)
   }
   const filterCompleted = () => {
-    let completedArray = []
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].done == true) {
-        completedArray.push(data[i])
-      }
-    }
-    console.log(completedArray)
-    setFilteredData(completedArray)
+    const result = data.filter((todo) => todo.done == true)
+    setFilteredData(result)
   }
   const changeStyle = () => {
     let main = document.querySelector('main')
